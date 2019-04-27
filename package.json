@@ -1,7 +1,7 @@
 {
   "name": "@stayko/airbnb-scraper",
   "version": "1.0.0",
-  "description": "",
+  "description": "AirBnb scraper",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
