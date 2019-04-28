@@ -47,7 +47,7 @@ export default class Scraper {
     try {
       await Promise.all(imagesArray.map(image => download(image, path))).then(
         () => {
-          console.log("files downloaded!");
+          console.log("Files downloaded!");
         }
       );
     } catch (e) {
@@ -103,11 +103,6 @@ export default class Scraper {
       $(this.selectors.images).each(function(i, elem) {
         images[i] = $(elem).attr("src");
       });
-
-      Scraper.saveTextToDisk(
-        title,
-        "/Users/Stayko/work/airbnb-scraper/lib/file.txt"
-      );
 
       return { title, location, description, amenities, images };
     } catch (e) {
