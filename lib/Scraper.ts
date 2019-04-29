@@ -4,11 +4,11 @@ import * as download from "download";
 const fs = require("fs").promises;
 
 interface ScrapeSelectors {
-  title: string;
-  location: string;
-  description: string;
-  amenities: string;
-  images: string;
+  title?: string;
+  location?: string;
+  description?: string;
+  amenities?: string;
+  images?: string;
 }
 
 export default class Scraper {
@@ -23,7 +23,7 @@ export default class Scraper {
 
   constructor(private url: string, scrapeSelectors?: ScrapeSelectors) {
     this.selectors = scrapeSelectors
-      ? { ...scrapeSelectors }
+      ? { ...this.defaultSelectors, ...scrapeSelectors }
       : { ...this.defaultSelectors };
   }
 
@@ -40,7 +40,7 @@ export default class Scraper {
   }
 
   setSelectors(selectors: ScrapeSelectors) {
-    this.selectors = { ...selectors };
+    this.selectors = { ...this.defaultSelectors, ...selectors };
   }
 
   static async saveImagesToDisk(imagesArray: string[], path: string) {

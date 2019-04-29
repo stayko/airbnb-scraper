@@ -42,6 +42,22 @@ describe("Test Scraper module", () => {
     expect(scraper.getSelectors()).toMatchObject(newSelectors);
   });
 
+  it("merges selectors", () => {
+    const scraper = new Scraper(airBnbURL);
+    const newSelectors = {
+      title: "new selector"
+    };
+    const mergedSelectors = {
+      title: "new selector",
+      location: "div[data-location] > a > div",
+      description: "#summary + div > div > div > div",
+      amenities: "#room #amenities td > div",
+      images: "#room meta[itemprop=image] + div div > img:nth-child(2)"
+    };
+    scraper.setSelectors(newSelectors);
+    expect(scraper.getSelectors()).toMatchObject(mergedSelectors);
+  });
+
   it("fetchHTML() fails with blank URL", async () => {
     expect.assertions(1);
     const scraper = new Scraper("");
