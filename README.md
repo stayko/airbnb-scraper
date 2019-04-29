@@ -56,6 +56,24 @@ Example result:
 
 ```
 
+## Selectors 
+```javascript
+//default selector rules for scraping different elements of the page
+{
+    title: "#room #summary h1 > span",
+    location: "div[data-location] > a > div",
+    description: "#summary + div > div > div > div",
+    amenities: "#room #amenities td > div",
+    images: "#room meta[itemprop=image] + div div > img:nth-child(2)"
+}
+
+//they can be overriden via the constructor or setSelectors method
+const newSelectorsObj = {title: "new selector rule for title"};
+
+const scraper = new Scraper(url, newSelectorsObj);
+
+scraper.setSelectors(newSelectorsObj);
+```
 
 ## Utility functions
 
